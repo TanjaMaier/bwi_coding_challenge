@@ -31,17 +31,7 @@ status = model.solve(PULP_CBC_CMD(gapRel =0.0002))
 if model.status:
     print(f"status: {model.status}, {LpStatus[model.status]}")
     print(f"Total benefit: {model.objective.value()}\n")
-
-    # TODO: mehr Infos anzeigen
-    # - Gesamtgewicht je Transporter
-    # - Freies Gewicht
-
-    # for var in model.variables():
-    #     print(f"{var.name}: {var.value()}")
-
-    # for name, constraint in model.constraints.items():
-    #     print(f"{name}: {constraint.value()}")
-
+    
     for i in range (10):
         opt_amount = x[i].value() + x[i+10].value()
         print(f"\t{hardware[i]}: {opt_amount}")
@@ -50,11 +40,5 @@ if model.status:
         print(f"\nTransporter {j+1}:")
         for i in range(10):
             print(f"\t{hardware[i]}: {x[i + j * 10].value()}")
-        
-        ls = [type(item) for item in x[:10]]
-        print(ls)
-        #total_weight = (np.dot(weights, list(x.values())[:10]) + (j % 2) * 72400 + (j % 2) * 85700) / 1000
-        #print(f"\t=> total loading weight in kilograms (incl. driver): {total_weight}")
-
 else:
     print("The optimum could not be determined.")
