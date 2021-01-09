@@ -26,12 +26,12 @@ for i in range(10):
 model += lpSum([np.dot(benefits, x[:10]), np.dot(benefits, x[10:])])    # Maximize the total benefit
 
 # Solve the problem; The relative gap tolerance (gapRel) is used as the termination criterion.
-status = model.solve(PULP_CBC_CMD(gapRel =0.0002))
+status = model.solve(PULP_CBC_CMD(gapRel=0.0002))
 
 if model.status:
     print(f"status: {model.status}, {LpStatus[model.status]}")
     print(f"Total benefit: {model.objective.value()}\n")
-    
+
     for i in range (10):
         opt_amount = x[i].value() + x[i+10].value()
         print(f"\t{hardware[i]}: {opt_amount}")
