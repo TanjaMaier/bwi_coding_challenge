@@ -21,6 +21,8 @@ Das Programm wird mit folgendem Befehl ausgeführt:
 python3 opt_transport.py
 ```
 
+(Getestet mit Python 3.9.1)
+
 &nbsp;
 ## Algorithmus:
 
